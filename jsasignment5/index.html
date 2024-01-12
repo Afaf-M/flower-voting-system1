@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flower Voting System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .flowers {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+    }
+
+    .flower-card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .flower-card:hover {
+      transform: scale(1.05);
+    }
+
+    .flower-card img {
+      max-width: 100%;
+      height: auto;
+      flex-grow: 1; /* Allow the image to grow to fill the available space */
+    }
+
+    
+    .vote-button {
+      padding: 8px 16px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+     /* Set max width for the images */
+     .flower-card img {
+      max-width: 100%;
+      height: auto;
+     }
+  </style>
+</head>
+<body>
+
+  <h1>Vote for the Best Flower</h1>
+
+  <div class="flowers">
+    <div class="flower-card" id="rose" onclick="vote('rose')">
+      <h2>Roses</h2>
+      <img src="./images/THE_CHILDRENS_ROSE_2021__22394.jpg" alt="Roses">
+      <button class="vote-button">Vote</button>
+    </div>
+
+    <div class="flower-card" id="peony" onclick="vote('peony')">
+      <h2>Peony</h2>
+      <img src="./images/istockphoto-177130955-612x612.jpg" alt="Peony">
+      <button class="vote-button">Vote</button>
+    </div>
+
+    <div class="flower-card" id="sunflower" onclick="vote('sunflower')">
+      <h2>Sunflower</h2>
+      <img src="./images/sunflower-3550693_640.jpg" alt="Sunflower">
+      <button class="vote-button">Vote</button>
+    </div>
+
+    <div class="flower-card" id="lily" onclick="vote('lily')">
+      <h2>Lily</h2>
+      <img src="./images/HD-wallpaper-wonderful-flowers-13065-1024x768-jpg-lily-yellow-strand-sweetsmell.jpg" alt="Lily">
+      <button class="vote-button">Vote</button>
+    </div>
+  </div>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    let votes = {
+      rose: 0,
+      peony: 0,
+      sunflower: 0,
+      lily: 0
+    };
+
+    function vote(flower) {
+      votes[flower]++;
+      alert(`You voted for ${flower}!`);
+      displayResults();
+      console.log("Votes:", votes);
+    }
+
+    function displayResults() {
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = "<h2>Results</h2>";
+      
+      for (const flower in votes) {
+        const count = votes[flower];
+        resultDiv.innerHTML += `<p>${flower}: ${count} vote${count !== 1 ? 's' : ''}</p>`;
+      }
+    }
+  </script>
+
+</body>
+</html>
